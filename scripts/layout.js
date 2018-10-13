@@ -1,5 +1,8 @@
 export class Layout {
+  get points() {
+    return this._points;
+  }
   constructor() {
-    alert('hello');
+    this._points = [];
   }
 }
