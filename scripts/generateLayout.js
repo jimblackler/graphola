@@ -1,3 +1,6 @@
+import {Layout} from './layout.js';
+
 export function generateLayout(random, width, height, radius) {
-  alert('hello');
+  const layout = new Layout();
+  return layout;
 }
