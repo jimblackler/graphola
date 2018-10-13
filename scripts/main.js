@@ -1,4 +1,5 @@
 import {generateLayout} from './generateLayout';
 
-alert('one');
-generateLayout('test');
+const random = Alea(2);
+const radius = 20;
+generateLayout(random, 800, 600, radius);

@@ -1,3 +1,3 @@
-export function generateLayout(string) {
-  alert(`${string.toUpperCase()}!`);
+export function generateLayout(random, width, height, radius) {
+
 }
