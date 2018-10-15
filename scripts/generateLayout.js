@@ -15,7 +15,7 @@ export function generateLayout(random, width, height, radius, clearance, nodes) 
   const layout = new Layout(width, height, radius);
 
   const edgeChance = 0.1;
-  const tweenChance = 0.8;
+  const tweenChance = 0.6;
   while (layout.points.length < nodes) {
 
     let candidate;
@@ -42,7 +42,6 @@ export function generateLayout(random, width, height, radius, clearance, nodes) 
         candidate[1] = height - radius;
       }
     }
-
 
     if (!collided(candidate, layout.points, clearance)) {
       layout.points.push(candidate);
