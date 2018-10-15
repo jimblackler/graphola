@@ -24,7 +24,7 @@ function Mash() {
 
 
 // From http://baagoe.com/en/RandomMusings/javascript/
-function Alea() {
+export function Alea() {
   return (function(args) {
     // Johannes BaagÌüe <baagoe@baagoe.com>, 2010
     var s0 = 0;

@@ -1,6 +1,7 @@
+import {Alea} from './alea.js';
 import {generateLayout} from './generateLayout.js';
+import {Renderer} from './renderer.js';
 
-const random = Alea(2);
-const radius = 20;
-console.log('test');
-generateLayout(random, 800, 600, radius, 30);
+const layout = generateLayout(Alea(2), 800, 600, 20, 30, 55);
+const renderer = new Renderer(document.getElementById('diagram'));
+renderer.render(layout);
