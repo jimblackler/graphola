@@ -4,6 +4,7 @@ export class Renderer {
     this._canvas.height = layout.height;
     this._ctx.textAlign = 'center';
     this._ctx.textBaseline = 'middle';
+
     for (let idx = 0; idx < layout.points.length; idx++) {
       const point = layout.points[idx];
       this._ctx.beginPath();
