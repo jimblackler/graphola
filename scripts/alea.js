@@ -73,4 +73,4 @@ export function Alea() {
     return random;
 
   }(Array.prototype.slice.call(arguments)));
-};
+}
