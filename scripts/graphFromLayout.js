@@ -14,9 +14,9 @@ function edgeAvoidsNodes(layout, i0, i1, minApproach) {
     }
 
     const point = layout.points[idx];
-    const delta2 = [point[0] - p0[0], point[1] - p0[1]];
+    const delta1 = [point[0] - p0[0], point[1] - p0[1]];
 
-    const along = unit[0] * delta2[0] + unit[1] * delta2[1];
+    const along = unit[0] * delta1[0] + unit[1] * delta1[1];
     if (along < 0) {
       continue;
     }
@@ -24,7 +24,7 @@ function edgeAvoidsNodes(layout, i0, i1, minApproach) {
       continue;
     }
 
-    const approach = rot90[0] * delta2[0] + rot90[1] * delta2[1];
+    const approach = rot90[0] * delta1[0] + rot90[1] * delta1[1];
     if (Math.abs(approach) < minApproach) {
       return false;
     }
@@ -61,7 +61,7 @@ function collidesWithEdges(layout, i0, i1, edges) {
       continue;
     }
 
-    const t = cross0 / (cross1 - cross0);
+    const t = cross0 / (cross0 - cross1);
 
     const along0 = delta0[0] * unit[0] + delta0[1] * unit[1];
     const along1 = delta1[0] * unit[0] + delta1[1] * unit[1];
