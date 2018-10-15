@@ -15,6 +15,15 @@ function edgeAvoidsNodes(layout, i0, i1, minApproach) {
 
     const point = layout.points[idx];
     const delta2 = [point[0] - p0[0], point[1] - p0[1]];
+
+    const along = unit[0] * delta2[0] + unit[1] * delta2[1];
+    if (along < 0) {
+      continue;
+    }
+    if (along > length) {
+      continue;
+    }
+
     const approach = rot90[0] * delta2[0] + rot90[1] * delta2[1];
     if (Math.abs(approach) < minApproach) {
       return false;
