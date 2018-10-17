@@ -1,5 +1,5 @@
 import {Alea} from './alea.js';
-import {findEdgeNodes} from './findEdgeNodes.js';
+import {findPerimeter} from './findPerimeter.js';
 import {generateLayout} from './generateLayout.js';
 import {graphFromLayout} from './graphFromLayout.js';
 import {Renderer} from './renderer.js';
@@ -10,5 +10,5 @@ const graph = graphFromLayout(layout, 18);
 const renderer = new Renderer(document.getElementById('diagram'));
 renderer.render(layout, graph);
 
-const edgeNodes = findEdgeNodes(graph);
+const edgeNodes = findPerimeter(graph);
 console.log(JSON.toString(edgeNodes));
