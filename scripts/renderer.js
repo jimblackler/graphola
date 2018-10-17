@@ -7,6 +7,10 @@ export class Renderer {
 
     for (let idx = 0; idx < layout.points.length; idx++) {
       const point = layout.points[idx];
+      if (point === undefined) {
+        continue;
+      }
+
       this._ctx.beginPath();
       this._ctx.arc(point[0], point[1], layout.radius, 0, 2 * Math.PI);
       this._ctx.stroke();
@@ -17,7 +21,13 @@ export class Renderer {
     for (const edge of graph.edges) {
       this._ctx.beginPath();
       const p0 = layout.points[edge[0]];
+      if (p0 === undefined) {
+        continue;
+      }
       const p1 = layout.points[edge[1]];
+      if (p1 === undefined) {
+        continue;
+      }
       const delta = [p1[0] - p0[0], p1[1] - p0[1]];
       const length = Math.sqrt(delta[0] * delta[0] + delta[1] * delta[1]);
       const unit = [delta[0] / length, delta[1] / length];

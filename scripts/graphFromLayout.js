@@ -9,7 +9,7 @@ function edgeAvoidsNodes(layout, i0, i1, minApproach) {
   const rot90 = [unit[1], -unit[0]];
 
   for (let idx = 0; idx < layout.points.length; idx++) {
-    if (idx == i0 || idx == i1) {
+    if (idx === i0 || idx === i1) {
       continue;
     }
 
@@ -41,10 +41,10 @@ function collidesWithEdges(layout, i0, i1, edges) {
   const rot90 = [unit[1], -unit[0]];
 
   for (const other of edges) {
-    if (other[0] == i0 || other[0] == i1) {
+    if (other[0] === i0 || other[0] === i1) {
       continue;
     }
-    if (other[1] == i0 || other[1] == i1) {
+    if (other[1] === i0 || other[1] === i1) {
       continue;
     }
 
@@ -57,7 +57,7 @@ function collidesWithEdges(layout, i0, i1, edges) {
     const cross0 = delta0[0] * rot90[0] + delta0[1] * rot90[1];
     const cross1 = delta1[0] * rot90[0] + delta1[1] * rot90[1];
 
-    if (cross0 < 0 == cross1 < 0) {
+    if (cross0 < 0 === cross1 < 0) {
       continue;
     }
 
