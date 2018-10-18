@@ -5,9 +5,9 @@ function Mash() {
 
   const mash = function (data) {
     data = data.toString();
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       n += data.charCodeAt(i);
-      var h = 0.02519603282416938 * n;
+      let h = 0.02519603282416938 * n;
       n = h >>> 0;
       h -= n;
       h *= n;
