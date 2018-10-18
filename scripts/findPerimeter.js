@@ -1,28 +1,8 @@
 import {findPath} from './findPath.js';
+import {getEdgePairs} from './getEdgePairs.js';
 
-function add(edgeByNodes, node0, node1) {
-  let neighbours;
-  if (edgeByNodes.has(node0)) {
-    neighbours = edgeByNodes.get(node0);
-  } else {
-    neighbours = new Set();
-    edgeByNodes.set(node0, neighbours);
-  }
-  neighbours.add(node1);
-}
-
-function getEdgePairs(graph) {
-  const neighbourPairs = new Map();
-  for (const edge of graph.edges) {
-    add(neighbourPairs, edge[0], edge[1]);
-    add(neighbourPairs, edge[1], edge[0]);
-  }
-  return neighbourPairs;
-}
-
-export function findPerimeter(graph) {
+export function getPerimeterNodes(edgePairs) {
   const perimeterNodes = new Set();
-  const edgePairs = getEdgePairs(graph);
 
   for (let [node, neighbours] of edgePairs) {
     let neighbourCoEdges = 0;
@@ -35,6 +15,11 @@ export function findPerimeter(graph) {
       perimeterNodes.add(node);
     }
   }
+  return perimeterNodes;
+}
 
+export function findPerimeter(graph) {
+  const edgePairs = getEdgePairs(graph.edges);
+  const perimeterNodes = getPerimeterNodes(edgePairs);
   return findPath(edgePairs, perimeterNodes);
 }

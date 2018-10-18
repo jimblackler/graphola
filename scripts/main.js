@@ -1,9 +1,16 @@
 import {Alea} from './alea.js';
+import {average} from './averager.js';
 import {generateLayout} from './generateLayout.js';
 import {graphFromLayout} from './graphFromLayout.js';
-import {regenerateLayout} from './regenerateLayout.js';
+import {makeBorderLayout} from './makeBorderLayout.js';
 import {Renderer} from './renderer.js';
 
+function newCanvas() {
+  const diagrams = document.getElementById('diagrams');
+  const canvas = document.createElement('canvas');
+  diagrams.appendChild(canvas);
+  return canvas;
+}
 
 const width = 1024;
 const height = 800;
@@ -12,9 +19,10 @@ const radius = 16;
 const layout = generateLayout(Alea(2), width, height, radius, 30, 10);
 const graph = graphFromLayout(layout, 18);
 
-const renderer = new Renderer(document.getElementById('diagram'));
-renderer.render(layout, graph);
+new Renderer(newCanvas()).render(layout, graph);
 
-const layout2 = regenerateLayout(width, height, radius, graph);
-const renderer2 = new Renderer(document.getElementById('diagram2'));
-renderer2.render(layout2, graph);
+const layout2 = makeBorderLayout(width, height, radius, graph);
+new Renderer(newCanvas()).render(layout2, graph);
+
+average(layout2, graph);
+new Renderer(newCanvas()).render(layout2, graph);
