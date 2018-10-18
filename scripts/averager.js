@@ -1,9 +1,9 @@
 import {getEdgePairs} from "./getEdgePairs.js";
-import {getPerimeterNodes} from "./findPerimeter.js";
+import {filteredPerimeterNodes} from "./findPerimeter.js";
 
 export function average(layout, graph) {
   const edgePairs = getEdgePairs(graph.edges);
-  const perimeterNodes = getPerimeterNodes(edgePairs);
+  const perimeterNodes = filteredPerimeterNodes(edgePairs);
   const nextPoints = [];
   for (const [node, neighbours] of edgePairs) {
     if (perimeterNodes.has(node)) {
