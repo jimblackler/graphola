@@ -16,7 +16,7 @@ const width = 1024;
 const height = 800;
 const radius = 16;
 
-const layout = generateLayout(Alea(2), width, height, radius, 30, 10);
+const layout = generateLayout(Alea(2), width, height, radius, 30, 30);
 const graph = graphFromLayout(layout, 18);
 
 new Renderer(newCanvas()).render(layout, graph);
@@ -24,5 +24,7 @@ new Renderer(newCanvas()).render(layout, graph);
 const layout2 = makeBorderLayout(width, height, radius, graph);
 new Renderer(newCanvas()).render(layout2, graph);
 
-average(layout2, graph);
+for (let idx = 0; idx < 10; idx++) {
+  average(layout2, graph);
+}
 new Renderer(newCanvas()).render(layout2, graph);

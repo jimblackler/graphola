@@ -21,7 +21,9 @@ export function average(layout, graph) {
       combinedPositions[1] += neighbourPosition[1];
       validNeighbours++;
     }
-    nextPoints[node] = [combinedPositions[0] / validNeighbours, combinedPositions[1] / validNeighbours]
+    if (validNeighbours > 0) {
+      nextPoints[node] = [combinedPositions[0] / validNeighbours, combinedPositions[1] / validNeighbours];
+    }
   }
 
   for (let idx = 0; idx < nextPoints.length; idx++) {
