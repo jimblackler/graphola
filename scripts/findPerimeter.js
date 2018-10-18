@@ -4,7 +4,7 @@ export function getPerimeterNodes(edgePairs) {
   const perimeterNodes = new Set();
 
   for (let [node, neighbours] of edgePairs) {
-    if (!findPath(edgePairs, neighbours)) {
+    if (neighbours.size == 2 || !findPath(edgePairs, neighbours)) {
       perimeterNodes.add(node);
     }
   }
