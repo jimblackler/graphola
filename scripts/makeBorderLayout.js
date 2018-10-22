@@ -1,11 +1,12 @@
+import {findCycle} from "./findCycle.js";
 import {getEdgePairs} from "./getEdgePairs.js";
-import {getPerimeterPath} from "./findPerimeter.js";
+import {getPerimeterNodes} from "./findPerimeter.js";
 import {Layout} from "./layout.js";
 import {squareCoords} from './borderCoords.js';
 
 export function makeBorderLayout(width, height, radius, graph) {
   const edgePairs = getEdgePairs(graph.edges);
-  const perimeterPath = getPerimeterPath(edgePairs);
+  const perimeterPath = findCycle(edgePairs, getPerimeterNodes(edgePairs));
   const newLayout = new Layout(width, height, radius);
 
   // Position points on perimeter.

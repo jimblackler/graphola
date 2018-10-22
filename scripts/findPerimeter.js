@@ -29,8 +29,3 @@ export function filteredPerimeterNodes(edgePairs) {
 
   return filtered;
 }
-
-export function getPerimeterPath(edgePairs) {
-  const nodes = getPerimeterNodes(edgePairs);
-  return findCycle(edgePairs, nodes);
-}
