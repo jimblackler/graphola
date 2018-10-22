@@ -1,10 +1,10 @@
-import {findPath} from './findPath.js';
+import {findCycle} from './findCycle.js';
 
 export function getPerimeterNodes(edgePairs) {
   const perimeterNodes = new Set();
 
   for (let [node, neighbours] of edgePairs) {
-    if (neighbours.size == 2 || !findPath(edgePairs, neighbours)) {
+    if (neighbours.size == 2 || !findCycle(edgePairs, neighbours)) {
       perimeterNodes.add(node);
     }
   }
@@ -32,5 +32,5 @@ export function filteredPerimeterNodes(edgePairs) {
 
 export function getPerimeterPath(edgePairs) {
   const nodes = getPerimeterNodes(edgePairs);
-  return findPath(edgePairs, nodes);
+  return findCycle(edgePairs, nodes);
 }

@@ -1,4 +1,10 @@
-export function findPath(edgePairs, nodes) {
+/**
+ * Find any path connecting all of the nodes using any of the specified edges, without repeating an edge in reverse.
+ * @param edgePairs A map of edges, as a set of destination nodes keyed by origin node.
+ * @param nodes The nodes to connect.
+ * @returns {*} A list of nodes, or null if no path exists.
+ */
+export function findCycle(edgePairs, nodes) {
   const firstNode =  nodes.entries().next().value[0];
 
   let candidates = new Set();
