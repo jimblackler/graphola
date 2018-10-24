@@ -16,8 +16,9 @@ const width = 1024;
 const height = 800;
 const radius = 16;
 
-const layout = generateLayout(Alea(6), width, height, radius, 30, 30);
-const graph = graphFromLayout(layout, 30);
+const random = Alea(13);
+const layout = generateLayout(random, width, height, radius, 30, 45);
+const graph = graphFromLayout(random, layout, 30, 0.8, 0.8);
 
 new Renderer(newCanvas()).render(layout, graph);
 

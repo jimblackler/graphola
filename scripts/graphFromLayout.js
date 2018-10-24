@@ -80,13 +80,16 @@ function collidesWithEdges(layout, i0, i1, edges) {
   return false;
 }
 
-export function graphFromLayout(layout, minApproach) {
+export function graphFromLayout(random, layout, minApproach, edgePreCull, edgePostCull) {
   const graph = new Graph();
 
   const edgesAndLengths = [];
 
   for (let i0 = 0; i0 < layout.points.length - 1; i0++) {
     for (let i1 = i0 + 1; i1 < layout.points.length; i1++) {
+      if (random() > edgePreCull) {
+        continue;
+      }
       if (edgeAvoidsNodes(layout, i0, i1, minApproach)) {
         const p0 = layout.points[i0];
         const p1 = layout.points[i1];
@@ -100,6 +103,9 @@ export function graphFromLayout(layout, minApproach) {
   edgesAndLengths.sort((a, b) => a[0] - b[0]);
 
   for (const edgeAndLength of edgesAndLengths) {
+    if (random() > edgePostCull) {
+      continue;
+    }
     const edge = edgeAndLength[1];
     if (!collidesWithEdges(layout, edge[0], edge[1], graph.edges)) {
       graph.edges.push(edge);
