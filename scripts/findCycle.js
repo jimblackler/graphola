@@ -8,6 +8,7 @@ export function findCycle(edgePairs, nodes) {
   const firstNode =  nodes.entries().next().value[0];
 
   let candidates = new Set();
+  const considered = new Set();
 
   candidates.add([[firstNode], nodes]);
 
@@ -23,12 +24,18 @@ export function findCycle(edgePairs, nodes) {
         }
         const newNodes = new Set(remainingNodes);
         newNodes.delete(neighbour);
-        if (newNodes.size == 0) {
-          if (neighbour == firstNode) {
+
+        if (neighbour == firstNode) {
+          if (newNodes.size == 0) {
             return path;
           }
         } else {
-          next.add([path.concat(neighbour), newNodes]);
+          const newPath = path.concat(neighbour);
+          const newPathString = JSON.stringify(newPath);
+          if (!considered.has(newPathString)) {
+            considered.add(newPathString);
+            next.add([newPath, newNodes]);
+          }
         }
       }
     }
