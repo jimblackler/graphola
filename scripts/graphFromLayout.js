@@ -87,9 +87,6 @@ export function graphFromLayout(random, layout, minApproach, edgePreCull, edgePo
 
   for (let i0 = 0; i0 < layout.points.length - 1; i0++) {
     for (let i1 = i0 + 1; i1 < layout.points.length; i1++) {
-      if (random() > edgePreCull) {
-        continue;
-      }
       if (edgeAvoidsNodes(layout, i0, i1, minApproach)) {
         const p0 = layout.points[i0];
         const p1 = layout.points[i1];
@@ -103,12 +100,18 @@ export function graphFromLayout(random, layout, minApproach, edgePreCull, edgePo
   edgesAndLengths.sort((a, b) => a[0] - b[0]);
 
   for (const edgeAndLength of edgesAndLengths) {
-    if (random() > edgePostCull) {
+    if (random() > edgePreCull) {
       continue;
     }
     const edge = edgeAndLength[1];
     if (!collidesWithEdges(layout, edge[0], edge[1], graph.edges)) {
       graph.edges.push(edge);
+    }
+  }
+
+  for (let idx = graph.edges.length; idx >=0; idx--) {
+    if (random() > edgePostCull) {
+      graph.edges.splice(idx, 1);
     }
   }
 
