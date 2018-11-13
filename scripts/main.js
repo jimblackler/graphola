@@ -11,8 +11,6 @@ import {maximumSteps} from "./reachMatrix.js";
 import {maximumStepsFrom} from "./reachMatrix.js";
 import {Renderer} from './renderer.js';
 
-
-
 function newCanvas() {
   const diagrams = document.getElementById('diagrams');
   const canvas = document.createElement('canvas');
@@ -39,7 +37,19 @@ if (true) {
 
 
   new Renderer(newCanvas()).render(layout, graph);
-  console.log(JSON.stringify(reachMatrix));
+  const eastToWest = reachMatrix.get(east).get(west);
+  const northToSouth = reachMatrix.get(north).get(south);
+  for (const [node, reach] of reachMatrix.entries()) {
+    const tx0 = reach.get(east) / eastToWest;
+    const tx1 = 1 - reach.get(west) / eastToWest;
+    console.log(eastToWest, tx0, tx1, reach.get(east), reach.get(west));
+
+    const ty0 = reach.get(north) / northToSouth;
+    const ty1 = 1 - reach.get(south) / northToSouth;
+    console.log(northToSouth, ty0, ty1, reach.get(north), reach.get(south));
+
+  }
+
 }  else if (false) {
   const edgePairs = getEdgePairs(graph.edges);
   const perimeterNodes = getPerimeterNodes(edgePairs);
