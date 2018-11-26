@@ -10,6 +10,7 @@ import {makeBorderLayout} from './makeBorderLayout.js';
 import {maximumSteps} from "./reachMatrix.js";
 import {maximumStepsFrom} from "./reachMatrix.js";
 import {Renderer} from './renderer.js';
+import {toGraphViz} from './toGraphViz.js';
 
 function newCanvas() {
   const diagrams = document.getElementById('diagrams');
@@ -27,6 +28,7 @@ const layout = generateLayout(random, width, height, radius, 30, 45);
 const graph = graphFromLayout(random, layout, 30, 0.75, 0.75);
 
 new Renderer(newCanvas()).render(layout, graph);
+toGraphViz(graph);
 
 if (true) {
   const edgePairs = getEdgePairs(graph.edges);
